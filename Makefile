@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/19 11:24:58 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/19 11:44:45 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRCS = src/main.c
 BUILD_DIR = build
 
 INC_DIR = includes/
+
+INCS = $(INC_DIR)fdf.h
 
 INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I/usr/include
 
@@ -75,4 +77,8 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all libs cclean restart nflag clean fclean re
+norm:
+	norminette -R ForbiddenSourceHeader $(SRCS)
+	norminette -R CheckDefine $(INCS)
+
+.PHONY: all libs cclean restart nflag clean fclean re norm
