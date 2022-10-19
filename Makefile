@@ -6,11 +6,11 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/18 22:05:26 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/19 11:24:58 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = FdF
+NAME = fdf
 
 CC = gcc
 

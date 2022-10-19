@@ -28,23 +28,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 void	my_mlx_line_put(t_data *data, t_line line)
 {
 	long	npx;
-	int		dx;
-	int		dy;
-	int		m;
+	double		dx;
+	double		dy;
 	int		i;
-	int		x;
-	int		y;
+	// int		x;
+	// int		y;
 
 	dx = line.x2 - line.x1;
 	dy = line.y2 - line.y1;
-	m = dy / dx;
 	npx = (long)sqrt((double)((dx * dx) + (dy * dy)));
 	i = 0;
 	while (i < npx)
 	{
-		x = line.x1 + (i * (dx / (int) npx));
-		y = line.y1 + (i * (dy / (int) npx));
-		my_mlx_pixel_put(data, x, y, line.color);
+		// x = line.x1 + (int)(i * (dx / npx));
+		// y = line.y1 + (int)(i * (dy / npx));
+		my_mlx_pixel_put(data, line.x1 + (int)(i * (dx / npx)), line.y1 + (int)(i * (dy / npx)), line.color);
 		i++;
 	}
 }
@@ -63,10 +61,10 @@ int	main(void)
 								&img.endian);
 
 	line.color = 0x00FF0000;
-	line.x1 = 10;
-	line.x2 = 10;
-	line.y1 = 10;
-	line.y2 = 500;
+	line.x1 = 80;
+	line.x2 = 40;
+	line.y1 = 60;
+	line.y2 = 10;
 	my_mlx_line_put(&img, line);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
