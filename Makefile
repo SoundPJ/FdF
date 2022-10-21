@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/19 11:44:45 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/19 14:53:20 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ restart: cclean $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 nflag: cclean $(NOBJS)
-
 	$(CC) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o FdF
 
 clean:
