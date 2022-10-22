@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/19 11:44:45 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/22 23:53:33 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,11 @@ MLX_FLAGS = -Imlx_Linux -Lmlx_Linux -lmlx_Linux -lXext -lX11 -lm -lz
 
 MLX_DIR = mlx_Linux/
 
-SRCS = src/main.c
+SRCS =	src/main.c	\
+		src/put.c	\
+		src/utils.c	\
+		src/get_next_line.c	\
+		src/get_next_line_utils.c
 
 BUILD_DIR = build
 
@@ -28,7 +32,7 @@ INC_DIR = includes/
 
 INCS = $(INC_DIR)fdf.h
 
-INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I/usr/include
+INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I/usr/include -Ilibft
 
 LIBFT_DIR = libft/
 
