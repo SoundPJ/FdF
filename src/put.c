@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/22 23:37:46 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/23 00:17:00 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	my_mlx_lined_put(t_data *data, t_lined ld)
 	int			y2;
 	t_line		l;
 
-	x2 = ld.p1.x + (ld.len * cos(rad(ld.deg)));
-	y2 = ld.p1.y + (ld.len * sin(rad(ld.deg)));
+	x2 = ld.p1.x + (ld.len * cos(TORAD * ld.deg));
+	y2 = ld.p1.y + (ld.len * sin(TORAD * ld.deg));
 	l.p1.x = ld.p1.x;
 	l.p1.y = ld.p1.y;
 	l.p2.x = x2;

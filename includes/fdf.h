@@ -6,13 +6,15 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/22 23:46:11 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/23 00:15:42 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+# define TORAD	M_PI/180
 
+# include "mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>

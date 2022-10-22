@@ -6,16 +6,11 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/22 23:37:59 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/23 00:16:13 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-double	rad(double deg)
-{
-	return (0.0174533 * deg);
-}
 
 int	main(int ac, char **av)
 {
