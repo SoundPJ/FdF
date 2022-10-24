@@ -6,18 +6,20 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/23 00:15:42 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:25:08 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define TORAD	M_PI/180
+# define WRL_ERR 2	
 
 # include "mlx.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <math.h>
 # include "mlx.h"
 # include "libft.h"
@@ -36,6 +38,7 @@ typedef struct s_point
 	int	x;
 	int	y;
 	int	z;
+	int	color;
 }	t_point;
 
 typedef struct s_line {
@@ -50,5 +53,8 @@ typedef struct s_lined {
 	double	deg;
 	int		color;
 }	t_lined;
+
+int	map_check(int fd);
+t_point	**map_extract(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/23 00:14:58 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/24 16:22:13 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ INC_DIR = includes/
 
 INCS = $(INC_DIR)fdf.h
 
-INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I/usr/include -Ilibft
-
 LIBFT_DIR = libft/
+
+INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I/usr/include -Iincludes 
 
 LIBS = -L$(LIBFT_DIR) -lft -L/usr/lib
 
@@ -47,15 +47,9 @@ libs:
 
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
-NOBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
-
 $(OBJS): $(BUILD_DIR)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(NOBJS): $(BUILD_DIR)/%.o: %.c
-	@mkdir -p $(@D)
-	$(CC) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS) libs
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
@@ -66,9 +60,6 @@ cclean:
 
 restart: cclean $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
-
-nflag: cclean $(NOBJS)
-	$(CC) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o FdF
 
 clean:
 	make clean -C $(LIBFT_DIR)

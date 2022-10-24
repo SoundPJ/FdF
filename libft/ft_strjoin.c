@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 00:59:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/23 00:00:39 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:59:24 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	s[i] = 0;
-	free(s1);
-	free(s2);
 	return (s);
 }
 

@@ -6,35 +6,49 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/23 00:07:56 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:34:58 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//return 0 if error, otherwise return 1
-int	map_check(int ac, char **av)
+//return 0 if error, otherwise return number of line
+int	map_check(int fd)
 {
-	int		fd;
-	int		len;
-	char	*line;
+	size_t		len;
+	char		*line;
+	int			nline;
+	int			error;
 
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putstr_fd("No file ", 2);
-		ft_putstr_fd(av[1], 2);
-		ft_putstr_fd("\n", 2);
-		return (0);
-	}
+	nline = 0;
+	error = 0;
 	line = get_next_line(fd);
 	len = ft_strlen(line);
-	while (line || len != ft_strlen(line))
-		line = get_next_line(fd);
-	if (len != ft_strlen(line))
+	while (line && ++nline)
 	{
-		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
-		return (0);
+		if (len != ft_strlen(line))
+			error = WRL_ERR;
+		free(line);
+		line = get_next_line(fd);
 	}
-	return (1);
+	if (error == 0)
+		return (nline);
+	else if (error == WRL_ERR)
+		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
+	return (0);
 }
+
+// t_point	**map_extract(int fd)
+// {
+// 	t_point	**map;
+// 	char	**data;
+// 	char	*s;
+// 	int		i;
+
+// 	s = get_next_line(fd);
+// 	data = ft_split(s, ' ');
+// 	i = 0;
+// 	while (data[i])
+// 		i++;
+// 	map = malloc(sizeof(t_point *) * i);
+// }

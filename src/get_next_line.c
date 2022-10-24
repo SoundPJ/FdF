@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 20:19:00 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/22 23:57:09 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:12:14 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	*get_remain(char *s, int nl_id)
 
 	tmp = NULL;
 	i = 0;
-	tmp = ft_calloc(ft_strlen_nl(s, 0) - nl_id);
+	tmp = ft_calloc(ft_strlen_nl(s, 0) - nl_id, sizeof(char));
 	if (!tmp)
 	{
 		if (s != NULL)
@@ -79,7 +79,7 @@ char	*get_line(char *s, int nl_id)
 	char	*line;
 
 	i = 0;
-	line = ft_calloc(nl_id + 2);
+	line = ft_calloc(nl_id + 2, sizeof(char));
 	if (!line)
 		return (NULL);
 	while (i <= nl_id)
@@ -97,7 +97,7 @@ char	*ft_lastline(char *str)
 	int		i;
 
 	i = 0;
-	l_line = ft_calloc(ft_strlen_nl(str, 0) + 1);
+	l_line = ft_calloc(ft_strlen_nl(str, 0) + 1, sizeof(char));
 	if (!l_line || !str)
 	{
 		if (str != NULL)
@@ -123,7 +123,7 @@ char	*ft_read(char *str, int fd)
 	cur = 0;
 	while (1)
 	{
-		buf = ft_calloc(BUFFER_SIZE + 1);
+		buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		if (!buf)
 			return (NULL);
 		ret = read(fd, buf, BUFFER_SIZE);
@@ -133,7 +133,7 @@ char	*ft_read(char *str, int fd)
 			free(buf);
 			return (NULL);
 		}
-		str = ft_strjoin(str, buf);
+		str = ft_strjoin_gnl(str, buf);
 		if (!str)
 			return (NULL);
 		if (ft_strlen_nl(str + cur, 1) >= 0 || ret < BUFFER_SIZE)
