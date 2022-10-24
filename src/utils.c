@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 17:57:29 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:21:23 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,43 @@ int	map_check(int fd)
 
 t_point	**map_extract(int fd, int nline)
 {
-	t_point	**map;
+	t_point	*map;
 	char	**data;
 	char	*s;
-	int		i;
+	int		x;
+	int		y;
+	// (void)	nline;
 
-	i = 0;
-	map = malloc(sizeof(t_point *) * nline);
+	x = 0;
+	y = 0;
+	map = malloc(sizeof(t_point) * (nline *));
 	s = get_next_line(fd);
+
+	while (s)
 	{
 		data = ft_split(s, ' ');
-		while (data[i])
-			i++;
-		
+		while (data[x])
+		{
+			set_point(x, y, data[x]);
+			x++;
+		}
+		y++;
+		s = get_next_line(fd);
 	}
+	return (NULL);
+}
+
+t_point	set_point(int x, int y, char *data)
+{
+	t_point	p;
+	char	**zc;
+	p.x = x;
+	p.y = y;
+	zc = ft_split(data, ',');
+	p.z = ft_atoi(zc[0]);
+	if (zc[1])
+		p.color = ft_atoi(zc[1]);
+	else
+		p.color = 0xFFFFFF;
+	return (p);
 }

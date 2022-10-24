@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 17:50:52 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:17:56 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	main(int ac, char **av)
 	// char	*s;
 	int		fd;
 	int		nline;
-	t_point	**map;
+	// t_point	**map;
+	t_point	p;
 	(void)	ac;
 
 	fd = open(av[1], O_RDONLY);
@@ -29,7 +30,10 @@ int	main(int ac, char **av)
 	}
 	nline = map_check(fd);
 	if (nline > 0)
-		map = map_extract(fd, nline);
+
+		// p = point_init(1,2,3,0x00FF0000);
+	printf("x,y,z,color = %d\t%d\t%d\t%x\n", p.x, p.y, p.z, p.color);
+		// map = map_extract(fd, nline);
 	// s = get_next_line(fd);
 	// while (s)
 	// {
@@ -39,18 +43,18 @@ int	main(int ac, char **av)
 	// }
 
 	// if (nline)
-		printf("nline = %d\n", nline);
+		// printf("nline = %d\n", nline);
 	// {
-		
+
 	// 	s = get_next_line(fd);
 	// 	while (s)
 	// 	{
-			
+
 	// 		s = get_next_line(fd);
 	// 	}
 	// }
 
-	
+
 	// init(ac, av);
 	// void	*mlx;
 	// void	*mlx_win;

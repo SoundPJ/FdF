@@ -6,14 +6,14 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 17:50:02 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 23:17:25 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define TORAD	M_PI/180
-# define WRL_ERR 2	
+# define WRL_ERR 2
 
 # include "mlx.h"
 # include <unistd.h>
@@ -56,5 +56,6 @@ typedef struct s_lined {
 
 int		map_check(int fd);
 t_point	**map_extract(int fd, int nline);
+t_point	set_point(int x, int y, char *data);
 
 #endif
