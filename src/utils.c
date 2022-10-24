@@ -6,13 +6,13 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 17:34:58 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:57:29 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//return 0 if error, otherwise return number of line
+//return -1 if error, otherwise return number of line
 int	map_check(int fd)
 {
 	size_t		len;
@@ -35,20 +35,23 @@ int	map_check(int fd)
 		return (nline);
 	else if (error == WRL_ERR)
 		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
-	return (0);
+	return (-1);
 }
 
-// t_point	**map_extract(int fd)
-// {
-// 	t_point	**map;
-// 	char	**data;
-// 	char	*s;
-// 	int		i;
+t_point	**map_extract(int fd, int nline)
+{
+	t_point	**map;
+	char	**data;
+	char	*s;
+	int		i;
 
-// 	s = get_next_line(fd);
-// 	data = ft_split(s, ' ');
-// 	i = 0;
-// 	while (data[i])
-// 		i++;
-// 	map = malloc(sizeof(t_point *) * i);
-// }
+	i = 0;
+	map = malloc(sizeof(t_point *) * nline);
+	s = get_next_line(fd);
+	{
+		data = ft_split(s, ' ');
+		while (data[i])
+			i++;
+		
+	}
+}

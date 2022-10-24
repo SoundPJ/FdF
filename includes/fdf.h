@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 17:25:08 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:50:02 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_lined {
 	int		color;
 }	t_lined;
 
-int	map_check(int fd);
-t_point	**map_extract(int fd);
+int		map_check(int fd);
+t_point	**map_extract(int fd, int nline);
 
 #endif

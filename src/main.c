@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 17:31:58 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/24 17:50:52 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int ac, char **av)
 	// char	*s;
 	int		fd;
 	int		nline;
+	t_point	**map;
 	(void)	ac;
 
 	fd = open(av[1], O_RDONLY);
@@ -27,6 +28,8 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	nline = map_check(fd);
+	if (nline > 0)
+		map = map_extract(fd, nline);
 	// s = get_next_line(fd);
 	// while (s)
 	// {
