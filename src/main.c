@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/25 13:22:29 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:54:53 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main(int ac, char **av)
 {
 	// char	*s;
 	int		fd;
-	int		nline;
-	// t_point	**map;
-	t_point	p;
+	// int		i;
+	int		npoint;
+	t_point	*map;
+	// t_point	p;
 	(void)	ac;
 
 	fd = open(av[1], O_RDONLY);
@@ -28,12 +29,22 @@ int	main(int ac, char **av)
 		ft_putendl_fd(av[1], 2);
 		return (0);
 	}
-	nline = map_check(fd);
-	if (nline > 0)
-	p = set_point(1, 1, "20,0xFF0000");
+	npoint = map_check(fd);
+	if (npoint > 0)
+	{
+		map = malloc(sizeof(t_point) * npoint);
+		if (map == NULL)
+			return (0);
+		map_extract(fd, map);
+		// i = 0;
+		// while (i < npoint)
+		// {
+		// 	printf("x,y,z,color = %d\t%d\t%d\t%x\n", map[i].x, map[i].y, map[i].z, map[i].color);
+		// 	i++;
+		// }
+	}
 		// p = point_init(1,2,3,0x00FF0000);
-	printf("x,y,z,color = %d\t%d\t%d\t%x\n", p.x, p.y, p.z, p.color);
-		// map = map_extract(fd, nline);
+	// printf("x,y,z,color = %d\t%d\t%d\t%x\n", p.x, p.y, p.z, p.color);
 	// s = get_next_line(fd);
 	// while (s)
 	// {

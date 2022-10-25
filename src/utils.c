@@ -6,13 +6,13 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/25 13:23:02 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:56:24 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-//return -1 if error, otherwise return number of line
+//return -1 if error, otherwise return number of points
 int	map_check(int fd)
 {
 	size_t		len;
@@ -32,39 +32,41 @@ int	map_check(int fd)
 		line = get_next_line(fd);
 	}
 	if (error == 0)
-		return (nline);
+		return (nline * len);
 	else if (error == WRL_ERR)
 		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
 	return (-1);
 }
 
-// t_point	**map_extract(int fd, int nline)
-// {
-// 	t_point	*map;
-// 	char	**data;
-// 	char	*s;
-// 	int		x;
-// 	int		y;
-// 	// (void)	nline;
+void	map_extract(int fd, t_point *map)
+{
+	char	**data;
+	char	*s;
+	int		x;
+	int		y;
+	int		i;
+	// (void)	nline;
 
-// 	x = 0;
-// 	y = 0;
-// 	map = malloc(sizeof(t_point) * (nline *));
-// 	s = get_next_line(fd);
-
-// 	while (s)
-// 	{
-// 		data = ft_split(s, ' ');
-// 		while (data[x])
-// 		{
-// 			set_point(x, y, data[x]);
-// 			x++;
-// 		}
-// 		y++;
-// 		s = get_next_line(fd);
-// 	}
-// 	return (NULL);
-// }
+	x = 0;
+	y = 0;
+	i = 0;
+	s = get_next_line(fd);
+	printf("s = %s\n", s);
+	while (s)
+	{
+		data = ft_split(s, ' ');
+		while (data[x])
+		{
+			map[i] = set_point(x, y, data[x]);
+			printf("x,y,z,color = %d\t%d\t%d\t%x\n", map[i].x, map[i].y, map[i].z, map[i].color);
+			i++;
+			x++;
+		}
+		y++;
+		s = get_next_line(fd);
+	}
+	free(data);
+}
 
 t_point	set_point(int x, int y, char *data)
 {
@@ -78,6 +80,7 @@ t_point	set_point(int x, int y, char *data)
 		p.color = xtoi(zc[1]);
 	else
 		p.color = 0xFFFFFF;
+	free(zc);
 	return (p);
 }
 
