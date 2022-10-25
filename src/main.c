@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/24 23:17:56 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/25 13:22:29 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	}
 	nline = map_check(fd);
 	if (nline > 0)
-
+	p = set_point(1, 1, "20,0xFF0000");
 		// p = point_init(1,2,3,0x00FF0000);
 	printf("x,y,z,color = %d\t%d\t%d\t%x\n", p.x, p.y, p.z, p.color);
 		// map = map_extract(fd, nline);
