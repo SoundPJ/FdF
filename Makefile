@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/24 16:22:13 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/26 13:59:03 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ MLX_DIR = mlx_Linux/
 SRCS =	src/main.c	\
 		src/put.c	\
 		src/utils.c	\
+		src/map_init.c	\
 		src/get_next_line.c	\
 		src/get_next_line_utils.c
 
