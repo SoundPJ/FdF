@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/26 15:35:16 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:10:01 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,6 @@ typedef struct s_point
 	int	color;
 }	t_point;
 
-typedef struct s_line {
-	t_point	p1;
-	t_point	p2;
-	int	color;
-}	t_line;
-
 typedef struct s_lined {
 	t_point	p1;
 	int		len;
@@ -54,11 +48,20 @@ typedef struct s_lined {
 	int		color;
 }	t_lined;
 
+//map_init.c
 int		map_check(int fd);
+void	map_extract(int fd, t_point *map);
+
+//utils.c
 int		xtoi(char *s);
 int		freestrarr(char **s);
 int		get_npoint(char *line);
-void	map_extract(int fd, t_point *map);
 t_point	set_point(int x, int y, char *data);
+
+//calculate.c
+
+
+//put.c
+void	my_mlx_line_put(t_data *data, t_point p1, t_point p2);
 
 #endif

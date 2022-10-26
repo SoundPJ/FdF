@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/26 13:59:03 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/26 15:41:14 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS =	src/main.c	\
 		src/put.c	\
 		src/utils.c	\
 		src/map_init.c	\
+		src/calculate.c	\
 		src/get_next_line.c	\
 		src/get_next_line_utils.c
 

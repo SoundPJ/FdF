@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/26 15:35:01 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:42:06 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ t_point	set_point(int x, int y, char *data)
 	return (p);
 }
 
+int	get_npoint(char *line)
+{
+	int		i;
+	char	**arr;
+
+	i = 0;
+	arr = ft_split(line, ' ');
+	while (arr[i])
+		i++;
+	freestrarr(arr);
+	return (i);
+}
+
 //return 0 on success
 int	freestrarr(char **s)
 {
@@ -63,17 +76,4 @@ int	freestrarr(char **s)
 	}
 	free(s);
 	return (0);
-}
-
-int	get_npoint(char *line)
-{
-	int		i;
-	char	**arr;
-
-	i = 0;
-	arr = ft_split(line, ' ');
-	while (arr[i])
-		i++;
-	freestrarr(arr);
-	return (i);
 }
