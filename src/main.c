@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/26 15:35:40 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:00:12 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ int	main(int ac, char **av)
 		if (map == NULL)
 			return (0);
 		map_extract(open(av[1], O_RDONLY), map);
-		free(map);
 		i = 0;
 		while (i < npoint)
 		{
 			printf("%d\t%d\t%d\t%x\n", map[i].x, map[i].y, map[i].z, map[i].color);
 			i++;
 		}
+		free(map);
 	}
 		// p = point_init(1,2,3,0x00FF0000);
 	// printf("x,y,z,color = %d\t%d\t%d\t%x\n", p.x, p.y, p.z, p.color);

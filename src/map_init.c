@@ -6,11 +6,13 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/26 15:33:23 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/28 00:06:11 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static t_point	set_pointc(int x, int y, char *data);
 
 //return -1 if error, otherwise return number of points
 int	map_check(int fd)
@@ -57,7 +59,7 @@ void	map_extract(int fd, t_point *map)
 		x = 0;
 		while (data[x])
 		{
-			map[i] = set_point(x, y, data[x]);
+			map[i] = set_pointc(x, y, data[x]);
 			i++;
 			x++;
 		}
@@ -66,4 +68,20 @@ void	map_extract(int fd, t_point *map)
 		freestrarr(data);
 	}
 	close(fd);
+}
+
+static t_point	set_pointc(int x, int y, char *data)
+{
+	char	**zc;
+	int		z;
+	int		color;
+
+	zc = ft_split(data, ',');
+	z = ft_atoi(zc[0]);
+	if (zc[1])
+		color = xtoi(zc[1]);
+	else
+		color = 0xFFFFFF;
+	freestrarr(zc);
+	return (set_point(x, y, z, color));
 }
