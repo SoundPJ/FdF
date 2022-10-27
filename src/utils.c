@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/26 15:42:06 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/27 17:39:06 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ int	xtoi(char *s)
 
 t_point	set_point(int x, int y, char *data)
 {
-	t_point	p;
 	char	**zc;
+	int		z;
+	int		color;
 
-	p.x = x;
-	p.y = y;
 	zc = ft_split(data, ',');
 	p.z = ft_atoi(zc[0]);
 	if (zc[1])
@@ -47,6 +46,17 @@ t_point	set_point(int x, int y, char *data)
 	else
 		p.color = 0xFFFFFF;
 	freestrarr(zc);
+	return (p);
+}
+
+t_point	set_pointd(int x, int y, int z, int color)
+{
+	t_point	p;
+	
+	p.x = x;
+	p.y = y;
+	p.z = z;
+	p.color = color;
 	return (p);
 }
 
