@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/26 15:41:14 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/28 20:45:01 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-MLX_FLAGS = -Imlx_Linux -Lmlx_Linux -lmlx_Linux -lXext -lX11 -lm -lz
+MLX_DIR = mlx/
+# MLX_DIR = mlx_Linux/
 
-MLX_DIR = mlx_Linux/
+MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -l$(MLX_DIR) -lXext -lX11 -lm -lz
 
 SRCS =	src/main.c	\
 		src/put.c	\

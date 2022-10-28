@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:40:47 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/28 00:05:46 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/28 20:43:10 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_point	rotate(t_point p, double degree, char axis)
 {
-	int		x;
-	int		y;
-	int		z;
+	int		x = 0;
+	int		y = 0;
+	int		z = 0;
 
 	if (axis == 'x' || axis == 'X')
 	{
@@ -30,7 +30,7 @@ t_point	rotate(t_point p, double degree, char axis)
 		y = p.y;
 		z = (cos(degree) * p.z) - (sin(degree) * p.x);
 	}
-	else if (axis == 'z' || axis == 'Z')
+	else
 	{
 		x = (cos(degree) * p.x) - (sin(degree) * p.y);
 		y = (sin(degree) * p.x) + (cos(degree) * p.y);
@@ -41,9 +41,9 @@ t_point	rotate(t_point p, double degree, char axis)
 
 t_point	translate(t_point p, double dist, char axis)
 {
-	int		x;
-	int		y;
-	int		z;
+	int		x = 0;
+	int		y = 0;
+	int		z = 0;
 
 	if (axis == 'x' || axis == 'X')
 	{
