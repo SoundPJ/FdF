@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/29 15:51:17 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/29 23:42:52 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FDF_H
 # define RD	M_PI/180
 # define WRL_ERR 2
+# define WIDTH 1920
+# define HEIGHT 1080
 
 # include "mlx.h"
 # include <unistd.h>
@@ -38,7 +40,9 @@ typedef struct s_point
 	double	x;
 	double	y;
 	double	z;
-	int		color;
+	int		r;
+	int		g;
+	int		b;
 }	t_point;
 
 typedef struct s_map {
@@ -66,6 +70,8 @@ t_point	scaling(t_point	p, double sx, double sy, double sz);
 //put.c
 void	my_mlx_line_put(t_data *data, t_point p1, t_point p2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	put_img(t_point	p1, t_point p2);
+void	put_img(t_point *map, t_map md);
+void	grid_put(t_data *data, t_point *map, t_map md);
+
 
 #endif

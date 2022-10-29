@@ -6,13 +6,13 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/29 15:53:59 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/30 02:10:41 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_point	set_pointc(int x, int y, char *data);
+static void		set_pointc(t_point *map, int x, int y, char *data);
 static t_map	set_mapdata(int sx, int sy, int sz);
 
 //return -1 if error, otherwise return number of points
@@ -58,9 +58,9 @@ void	map_extract(int fd, t_point *map)
 		data = ft_split(s, ' ');
 		free(s);
 		x = 0;
-		while (data[x])
+		while (data[x + 1])
 		{
-			map[i] = set_pointc(x, y, data[x]);
+			set_pointc(map + i, x, y, data[x]);
 			i++;
 			x++;
 		}
@@ -71,7 +71,7 @@ void	map_extract(int fd, t_point *map)
 	close(fd);
 }
 
-static t_point	set_pointc(int x, int y, char *data)
+static void	set_pointc(t_point *p, int x, int y, char *data)
 {
 	char	**zc;
 	int		z;
@@ -80,9 +80,14 @@ static t_point	set_pointc(int x, int y, char *data)
 	zc = ft_split(data, ',');
 	z = ft_atoi(zc[0]);
 	if (zc[1])
+		set_color(p, );
 		color = xtoi(zc[1]);
 	else
-		color = 0xFFFFFF;
+	{
+		r = 255;
+		g = 255;
+		b = 255;
+	}
 	freestrarr(zc);
 	return (set_point(x, y, z, color));
 }
