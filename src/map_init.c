@@ -6,16 +6,17 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/28 00:06:11 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:53:59 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 static t_point	set_pointc(int x, int y, char *data);
+static t_map	set_mapdata(int sx, int sy, int sz);
 
 //return -1 if error, otherwise return number of points
-int	map_check(int fd)
+t_map	map_check(int fd)
 {
 	int			npoint;
 	char		*line;
@@ -35,10 +36,10 @@ int	map_check(int fd)
 	}
 	close(fd);
 	if (error == 0)
-		return (nline * npoint);
+		return (set_mapdata(npoint, nline, 0));
 	else if (error == WRL_ERR)
 		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
-	return (-1);
+	return (set_mapdata(-1, -1, -1));
 }
 
 void	map_extract(int fd, t_point *map)
@@ -84,4 +85,14 @@ static t_point	set_pointc(int x, int y, char *data)
 		color = 0xFFFFFF;
 	freestrarr(zc);
 	return (set_point(x, y, z, color));
+}
+
+static t_map	set_mapdata(int nx, int ny, int nz)
+{
+	t_map	map;
+
+	map.nx = nx;
+	map.ny = ny;
+	map.nz = nz;
+	return (map);
 }

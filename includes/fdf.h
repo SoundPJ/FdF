@@ -6,13 +6,13 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/28 00:04:33 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:51:17 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define TORAD	M_PI/180
+# define RD	M_PI/180
 # define WRL_ERR 2
 
 # include "mlx.h"
@@ -35,23 +35,22 @@ typedef struct s_data {
 
 typedef struct s_point
 {
-	int	x;
-	int	y;
-	int	z;
-	int	color;
+	double	x;
+	double	y;
+	double	z;
+	int		color;
 }	t_point;
 
-typedef struct s_lined {
-	t_point	p1;
-	int		len;
-	double	deg;
-	int		color;
-}	t_lined;
+typedef struct s_map {
+	int nx;
+	int	ny;
+	int	nz;
+}	t_map;
 
 //map_init.c
-int		map_check(int fd);
+t_map	map_check(int fd);
 void	map_extract(int fd, t_point *map);
-t_point	set_point(int x, int y, int z, int color);
+t_point	set_point(double x, double y, double z, int color);
 
 //utils.c
 int		xtoi(char *s);
@@ -61,8 +60,12 @@ int		get_npoint(char *line);
 //calculate.c
 t_point	rotate(t_point p, double degree, char axis);
 t_point	translate(t_point p, double dist, char axis);
+t_point	scaling(t_point	p, double sx, double sy, double sz);
+
 
 //put.c
 void	my_mlx_line_put(t_data *data, t_point p1, t_point p2);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	put_img(t_point	p1, t_point p2);
 
 #endif

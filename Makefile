@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/28 20:45:01 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/29 11:33:43 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ CFLAGS = -Wall -Wextra -Werror
 MLX_DIR = mlx/
 # MLX_DIR = mlx_Linux/
 
-MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -l$(MLX_DIR) -lXext -lX11 -lm -lz
+MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+# MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -l$(MLX_DIR) -lXext -lX11 -lm -lz
 
 SRCS =	src/main.c	\
 		src/put.c	\
@@ -37,9 +38,11 @@ INCS = $(INC_DIR)fdf.h
 
 LIBFT_DIR = libft/
 
-INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I/usr/include -Iincludes 
+# INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I/usr/include
+INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) 
 
-LIBS = -L$(LIBFT_DIR) -lft -L/usr/lib
+# LIBS = -L$(LIBFT_DIR) -lft -L/usr/lib
+LIBS = -L$(LIBFT_DIR) -lft
 
 all: $(NAME)
 
@@ -55,14 +58,14 @@ $(OBJS): $(BUILD_DIR)/%.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(OBJS) libs
-	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 cclean:
 	-@rm -rf $(BUILD_DIR)
 	-@rm -f $(NAME)
 
 restart: cclean $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIBS) $(MLX_FLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 
 clean:
 	make clean -C $(LIBFT_DIR)
