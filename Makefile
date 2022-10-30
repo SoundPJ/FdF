@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/29 11:33:43 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/10/30 23:08:04 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,11 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-MLX_DIR = mlx/
-# MLX_DIR = mlx_Linux/
+# MLX_DIR = mlx/
+MLX_DIR = mlx_Linux/
 
-MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-# MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -l$(MLX_DIR) -lXext -lX11 -lm -lz
+# MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 
 SRCS =	src/main.c	\
 		src/put.c	\
@@ -38,11 +38,11 @@ INCS = $(INC_DIR)fdf.h
 
 LIBFT_DIR = libft/
 
-# INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I/usr/include
-INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) 
+INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I/usr/include
+# INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
 
-# LIBS = -L$(LIBFT_DIR) -lft -L/usr/lib
-LIBS = -L$(LIBFT_DIR) -lft
+LIBS = -L$(LIBFT_DIR) -lft -L/usr/lib
+# LIBS = -L$(LIBFT_DIR) -lft
 
 all: $(NAME)
 

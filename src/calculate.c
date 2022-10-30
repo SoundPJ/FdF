@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:40:47 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/30 16:10:45 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/30 23:06:49 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_point	translate(t_point p, double dist, char axis)
 		pp.y = p.y;
 		pp.z = p.z + dist;
 	}
-	set_color()
+	set_color(&pp, p.r, p.g, p.b);
 	// set_coord(&pp, x, y, z);
 	return (pp);
 }

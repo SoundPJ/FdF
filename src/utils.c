@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/30 15:59:31 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/30 23:12:30 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ void	set_color(t_point *p, int r, int g, int b)
 	p->r = r;
 	p->g = g;
 	p->b = b;
+	p->rgb = (r << 16) + (g << 8) + b;
 }
 
 int get_rgb(int rgb, char c)
 {
 	int val;
-	
+
 	val = 255;
 	if (c == 'r' || c == 'R')
 		val = (0b111111110000000000000000 & rgb) >> 16;
