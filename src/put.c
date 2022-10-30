@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/29 21:35:59 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/30 15:45:12 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,25 @@ void	my_mlx_line_put(t_data *data, t_point p1, t_point p2)
 
 	dx = p2.x - p1.x;
 	dy = p2.y - p1.y;
-	dc = p2.color - p1.color;
+	dc = p2.rgb - p1.rgb;
 	npx = (long)sqrt((double)((dx * dx) + (dy * dy)));
 	i = 0;
 	while (i < npx)
 	{
 		my_mlx_pixel_put(data, p1.x + (int)(i * (dx / npx)),
 			p1.y + (int)(i * (dy / npx)),
-			p1.color + (int)(i * (dc / npx)));
+			p1.rgb + (int)(i * (dc / npx)));
 		i++;
 	}
 }
+
+// int	gradient(t_point p1, t_point p2, long npx)
+// {
+// 	int	rgb;
+
+
+// 	return (rgb);
+// }
 
 void	put_img(t_point *map, t_map md)
 {

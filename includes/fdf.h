@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/29 23:42:52 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/10/30 16:00:04 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_point
 	int		r;
 	int		g;
 	int		b;
+	int		rgb;
 }	t_point;
 
 typedef struct s_map {
@@ -54,12 +55,15 @@ typedef struct s_map {
 //map_init.c
 t_map	map_check(int fd);
 void	map_extract(int fd, t_point *map);
-t_point	set_point(double x, double y, double z, int color);
+// t_point	set_coord(t_point *p, int x, int y, int z);
 
 //utils.c
 int		xtoi(char *s);
 int		freestrarr(char **s);
 int		get_npoint(char *line);
+int		get_rgb(int rgb, char c);
+void	set_coord(t_point* p, double x, double y, double z);
+void	set_color(t_point *p, int r, int g, int b);
 
 //calculate.c
 t_point	rotate(t_point p, double degree, char axis);
