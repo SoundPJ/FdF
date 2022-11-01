@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/30 23:12:30 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/01 23:00:12 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ void	set_color(t_point *p, int r, int g, int b)
 	p->rgb = (r << 16) + (g << 8) + b;
 }
 
+int	rgb(int r, int g, int b)
+{
+	return ((r << 16) + (g << 8) + b);
+}
+
 int get_rgb(int rgb, char c)
 {
 	int val;
@@ -72,7 +77,7 @@ int	get_npoint(char *line)
 	while (arr[i])
 		i++;
 	freestrarr(arr);
-	return (i - 1);
+	return (i);
 }
 
 //return 0 on success
@@ -88,4 +93,24 @@ int	freestrarr(char **s)
 	}
 	free(s);
 	return (0);
+}
+
+void	get_nz(t_point *map, t_map *md)
+{
+	int	i;
+	double	min;
+	double	max;
+
+	i = 0;
+	min = 0.0;
+	max = 0.0;
+	while (i < md->nx * md->ny)
+	{
+		if ((map + i)->z > max)
+			max = (map + i)->z;
+		if ((map + i)->z < min)
+			min = (map + i)->z;
+		i++;
+	}
+	md->nz = (int)(max - min);
 }

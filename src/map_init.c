@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/10/30 15:49:05 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/01 22:42:44 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ void	map_extract(int fd, t_point *map)
 		data = ft_split(s, ' ');
 		free(s);
 		x = 0;
-		while (data[x + 1])
+		while (data[x])
 		{
-			set_pointc(map + i, x, y, data[x]);
-			i++;
+			set_pointc(map + i++, x, y, data[x]);
 			x++;
 		}
 		y++;
@@ -75,23 +74,25 @@ static void	set_pointc(t_point *p, int x, int y, char *data)
 {
 	char	**zc;
 	int		z;
-	int		rgb;
+	// int		rgb;
 
 	zc = ft_split(data, ',');
 	z = ft_atoi(zc[0]);
 	if (zc[1])
 	{
-		// set_color(p, xtoi(zc[1]));
-		rgb = xtoi(zc[1]);
-		p->r = get_rgb(rgb, 'r');
-		p->g = get_rgb(rgb, 'g');
-		p->b = get_rgb(rgb, 'b');
+		p->rgb = xtoi(zc[1]);
+		p->r = get_rgb(p->rgb, 'r');
+		p->g = get_rgb(p->rgb, 'g');
+		p->b = get_rgb(p->rgb, 'b');
+		// set_color(&p, xtoi(zc[1]));
 	}
 	else
 	{
-		p->r = 255;
-		p->g = 255;
-		p->b = 255;
+		set_color(p, 255, 255, 255);
+		// p->r = 255;
+		// p->g = 255;
+		// p->b = 255;
+		// p->rgb =
 	}
 	freestrarr(zc);
 	set_coord(p, x, y, z);
