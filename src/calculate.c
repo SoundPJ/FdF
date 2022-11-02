@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 15:40:47 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/01 21:57:34 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:30:29 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_point	rotate(t_point p, double dg, char axis)
 	double		x;
 	double		y;
 	double		z;
-	// t_point		pp;
 
 	if (axis == 'x' || axis == 'X')
 	{
@@ -37,16 +36,12 @@ t_point	rotate(t_point p, double dg, char axis)
 		y = (sin(dg * RD) * p.x) + (cos(dg * RD) * p.y);
 		z = p.z;
 	}
-	// set_coord(&pp, x, y, z);
 	set_coord(&p, x, y, z);
 	return (p);
 }
 
 t_point	translate(t_point p, double dist, char axis)
 {
-	// double		x;
-	// double		y;
-	// double		z;
 	t_point		pp;
 
 	if (axis == 'x' || axis == 'X')
@@ -68,7 +63,6 @@ t_point	translate(t_point p, double dist, char axis)
 		pp.z = p.z + dist;
 	}
 	set_color(&pp, p.r, p.g, p.b);
-	// set_coord(&pp, x, y, z);
 	return (pp);
 }
 
@@ -83,4 +77,19 @@ t_point	scaling(t_point	p, double sxy, double sz)
 	z = (int)p.z * sz;
 	set_coord(&p, x, y, z);
 	return (p);
+}
+
+void	set_coord(t_point *p, double x, double y, double z)
+{
+	p->x = x;
+	p->y = y;
+	p->z = z;
+}
+
+void	set_color(t_point *p, int r, int g, int b)
+{
+	p->r = r;
+	p->g = g;
+	p->b = b;
+	p->rgb = (r << 16) + (g << 8) + b;
 }

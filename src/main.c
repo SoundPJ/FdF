@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/01 22:57:01 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:55:39 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int ac, char **av)
 			return (0);
 		map_extract(open(av[1], O_RDONLY), map);
 		get_nz(map, &md);
+		printf("x y z, %d\t%d\t%d\n", md.nx, md.ny, md.nz);
 		i = 0;
 		while (i < (md.nx * md.ny))
 		{

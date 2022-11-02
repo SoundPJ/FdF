@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/01 23:01:40 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/02 10:31:27 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,18 @@ void	map_extract(int fd, t_point *map);
 
 //utils.c
 int		xtoi(char *s);
-int		freestrarr(char **s);
-int		get_npoint(char *line);
-int		get_rgb(int rgb, char c);
-void	set_coord(t_point* p, double x, double y, double z);
-void	set_color(t_point *p, int r, int g, int b);
-void	get_nz(t_point *map, t_map *md);
 int		rgb(int r, int g, int b);
+int		get_rgb(int rgb, char c);
+int		get_npoint(char *line);
+int		freestrarr(char **s);
+void	get_nz(t_point *map, t_map *md);
 
 //calculate.c
 t_point	rotate(t_point p, double degree, char axis);
 t_point	translate(t_point p, double dist, char axis);
 t_point	scaling(t_point	p, double sxy, double sz);
-// t_point	scaling(t_point	p, double sx, double sy, double sz);
+void	set_coord(t_point* p, double x, double y, double z);
+void	set_color(t_point *p, int r, int g, int b);
 
 
 //put.c

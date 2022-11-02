@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/01 22:42:44 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:09:26 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,28 @@ t_map	map_check(int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	printf("npoint, nline : %d\t%d\n", npoint, nline);
 	if (error == 0)
 		return (set_mapdata(npoint, nline, 0));
 	else if (error == WRL_ERR)
 		ft_putstr_fd("Found wrong line length. Exiting.\n", 2);
 	return (set_mapdata(-1, -1, -1));
+}
+
+int	get_npoint(char *line)
+{
+	int		i;
+	char	**arr;
+	char	*trimmed;
+
+	i = 0;
+	trimmed = ft_strtrim(line, " \n");
+	arr = ft_split(trimmed, ' ');
+	free(trimmed);
+	while (arr[i])
+		i++;
+	freestrarr(arr);
+	return (i);
 }
 
 void	map_extract(int fd, t_point *map)
@@ -74,7 +91,6 @@ static void	set_pointc(t_point *p, int x, int y, char *data)
 {
 	char	**zc;
 	int		z;
-	// int		rgb;
 
 	zc = ft_split(data, ',');
 	z = ft_atoi(zc[0]);
@@ -84,19 +100,11 @@ static void	set_pointc(t_point *p, int x, int y, char *data)
 		p->r = get_rgb(p->rgb, 'r');
 		p->g = get_rgb(p->rgb, 'g');
 		p->b = get_rgb(p->rgb, 'b');
-		// set_color(&p, xtoi(zc[1]));
 	}
 	else
-	{
 		set_color(p, 255, 255, 255);
-		// p->r = 255;
-		// p->g = 255;
-		// p->b = 255;
-		// p->rgb =
-	}
 	freestrarr(zc);
 	set_coord(p, x, y, z);
-	// return (set_point(&p, x, y, z));
 }
 
 static t_map	set_mapdata(int nx, int ny, int nz)

@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/01 23:00:12 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:02:22 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,51 +33,23 @@ int	xtoi(char *s)
 	return (num);
 }
 
-void	set_coord(t_point* p, double x, double y, double z)
-{
-	p->x = x;
-	p->y = y;
-	p->z = z;
-}
-
-void	set_color(t_point *p, int r, int g, int b)
-{
-	p->r = r;
-	p->g = g;
-	p->b = b;
-	p->rgb = (r << 16) + (g << 8) + b;
-}
-
 int	rgb(int r, int g, int b)
 {
 	return ((r << 16) + (g << 8) + b);
 }
 
-int get_rgb(int rgb, char c)
+int	get_rgb(int rgb, char c)
 {
-	int val;
+	int	val;
 
 	val = 255;
 	if (c == 'r' || c == 'R')
-		val = (0b111111110000000000000000 & rgb) >> 16;
+		val = (0xFF0000 & rgb) >> 16;
 	else if (c == 'g' || c == 'G')
-		val = (0b000000001111111100000000 & rgb) >> 8;
+		val = (0x00FF00 & rgb) >> 8;
 	else if (c == 'b' || c == 'B')
-		val = (0b000000000000000011111111 & rgb);
+		val = (0x0000FF & rgb);
 	return (val);
-}
-
-int	get_npoint(char *line)
-{
-	int		i;
-	char	**arr;
-
-	i = 0;
-	arr = ft_split(line, ' ');
-	while (arr[i])
-		i++;
-	freestrarr(arr);
-	return (i);
 }
 
 //return 0 on success
@@ -97,7 +69,7 @@ int	freestrarr(char **s)
 
 void	get_nz(t_point *map, t_map *md)
 {
-	int	i;
+	int		i;
 	double	min;
 	double	max;
 
