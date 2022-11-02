@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/02 10:53:35 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/02 11:41:58 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,13 @@ void	my_mlx_line_put(t_data *data, t_point p1, t_point p2)
 	}
 }
 
+int	handle_input(int keysym, t_data *data)
+{
+	if (keysym == XK_Escape)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	return (0);
+}
+
 void	put_img(t_point *map, t_map md)
 {
 	void	*mlx;
@@ -55,12 +62,16 @@ void	put_img(t_point *map, t_map md)
 
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FdF");
+	mlx_loop_hook(mlx, &handle_no_event, &data);
+	mlx_key_hook(mlx_win, &handle_input, &data);
 	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 			&img.endian);
 	grid_put(&img, map, md);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
+	mlx_destroy_display(mlx);
+	free(mlx);
 }
 
 void grid_put(t_data *data, t_point *map, t_map md)
