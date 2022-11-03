@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/02 10:31:27 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/03 17:08:12 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # define WRL_ERR 2
 # define WIDTH 1920
 # define HEIGHT 1080
+
+# define MLX_ERROR 1
 
 # include "mlx.h"
 # include <unistd.h>
