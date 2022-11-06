@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/03 17:08:12 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/06 21:57:41 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define MLX_ERROR 1
 
 # include "mlx.h"
+# include "mlx_int.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,6 +29,7 @@
 # include "mlx.h"
 # include "libft.h"
 # include "get_next_line.h"
+# include <X11/keysym.h>
 
 typedef struct s_data {
 	void	*img;
@@ -36,6 +38,12 @@ typedef struct s_data {
 	int		line_length;
 	int		endian;
 }	t_data;
+
+typedef struct s_mlx {
+	void	*mlx;
+	void	*mlx_win;
+}	t_mlx;
+
 
 typedef struct s_point
 {
@@ -78,8 +86,8 @@ void	set_color(t_point *p, int r, int g, int b);
 //put.c
 void	my_mlx_line_put(t_data *data, t_point p1, t_point p2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	put_img(t_point *map, t_map md);
 void	grid_put(t_data *data, t_point *map, t_map md);
+int		put_img(t_point *map, t_map md);
 
 
 #endif

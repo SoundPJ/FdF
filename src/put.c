@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/03 17:10:02 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/06 21:58:17 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,41 +47,47 @@ void	my_mlx_line_put(t_data *data, t_point p1, t_point p2)
 	}
 }
 
-// int	handle_input(int keysym, t_data *data)
-// {
-// 	if (keysym == XK_Escape)
-// 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-// 	return (0);
-// }
-
-void	put_img(t_point *map, t_map md)
+int	handle_no_event(void *data)
 {
-	void	*mlx;
-	void	*mlx_win;
-	// t_data	img;
+	/* This function needs to exist, but it is useless for the moment */
+	(void)	data;
+	return (0);
+}
+
+int	handle_keyrelease(int keysym, t_mlx *data)
+{
+	if (keysym == XK_Escape)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	return (0);
+}
+
+int	put_img(t_point *map, t_map md)
+{
+	t_mlx	data;
 	(void)	map;
 	(void)	md;
 
-	mlx = mlx_init();
-	if (mlx == NULL)
+	data.mlx = mlx_init();
+	if (data.mlx == NULL)
 		return (MLX_ERROR);
-	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "FdF");
-	if (mlx_win == NULL)
+	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "FdF");
+	if (data.mlx_win == NULL)
 	{
-		free(mlx);
+		free(data.mlx);
 		return (MLX_ERROR);
 	}
-	// // mlx_loop_hook(mlx, &handle_no_event, &data);
-	// // mlx_key_hook(mlx_win, &handle_input, &data);
+	mlx_loop_hook(data.mlx, &handle_no_event, &data);
+	mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &data);
 	// img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
 	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 	// 		&img.endian);
 	// // grid_put(&img, map, md);
 	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
-	mlx_destroy_window(mlx, mlx_win);
-	mlx_destroy_display(mlx);
-	free(mlx);
+	mlx_loop(data.mlx);
+	mlx_destroy_window(data.mlx, data.mlx_win);
+	mlx_destroy_display(data.mlx);
+	free(data.mlx);
+	return (0);
 }
 
 void grid_put(t_data *data, t_point *map, t_map md)
