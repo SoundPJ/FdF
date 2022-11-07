@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/10/30 23:08:04 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/11/07 21:33:04 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 SRCS =	src/main.c	\
 		src/put.c	\
 		src/utils.c	\
+		src/utils2.c	\
 		src/map_init.c	\
 		src/calculate.c	\
 		src/get_next_line.c	\

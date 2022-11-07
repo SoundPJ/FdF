@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/02 11:02:22 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:18:09 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	xtoi(char *s)
 	return (num);
 }
 
-int	rgb(int r, int g, int b)
-{
-	return ((r << 16) + (g << 8) + b);
-}
+// int	rgb(int r, int g, int b)
+// {
+// 	return ((r << 16) + (g << 8) + b);
+// }
 
 int	get_rgb(int rgb, char c)
 {

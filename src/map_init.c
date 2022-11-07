@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/02 11:09:26 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:31:16 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ t_map	map_check(int fd)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	printf("npoint, nline : %d\t%d\n", npoint, nline);
 	if (error == 0)
 		return (set_mapdata(npoint, nline, 0));
 	else if (error == WRL_ERR)
@@ -62,6 +61,7 @@ int	get_npoint(char *line)
 void	map_extract(int fd, t_point *map)
 {
 	char	**data;
+	char	*trimmed;
 	char	*s;
 	int		x;
 	int		y;
@@ -72,13 +72,15 @@ void	map_extract(int fd, t_point *map)
 	s = get_next_line(fd);
 	while (s)
 	{
-		data = ft_split(s, ' ');
+		trimmed = ft_strtrim(s, " \n");
 		free(s);
-		x = 0;
-		while (data[x])
+		data = ft_split(trimmed, ' ');
+		free(trimmed);
+		x = -1;
+		while (data[++x])
 		{
 			set_pointc(map + i++, x, y, data[x]);
-			x++;
+			// x++;
 		}
 		y++;
 		s = get_next_line(fd);
