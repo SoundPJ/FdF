@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/07 21:31:16 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:45:41 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,10 @@ void	map_extract(int fd, t_point *map)
 	char	**data;
 	char	*trimmed;
 	char	*s;
-	int		x;
-	int		y;
+	t_map	p;
 	int		i;
 
-	y = 0;
+	p.ny = 0;
 	i = 0;
 	s = get_next_line(fd);
 	while (s)
@@ -76,13 +75,10 @@ void	map_extract(int fd, t_point *map)
 		free(s);
 		data = ft_split(trimmed, ' ');
 		free(trimmed);
-		x = -1;
-		while (data[++x])
-		{
-			set_pointc(map + i++, x, y, data[x]);
-			// x++;
-		}
-		y++;
+		p.nx = -1;
+		while (data[++(p.nx)])
+			set_pointc(map + i++, p.nx, p.ny, data[p.nx]);
+		p.ny++;
 		s = get_next_line(fd);
 		freestrarr(data);
 	}

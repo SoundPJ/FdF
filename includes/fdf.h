@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/07 21:28:06 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 21:58:48 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # define WRL_ERR 2
 # define WIDTH 1920
 # define HEIGHT 1080
+# define XK_Escape 0xff1b
 
 # define MLX_ERROR 1
 
 # include "mlx.h"
-// # include "mlx_int.h"
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -28,8 +28,6 @@
 # include <math.h>
 # include "libft.h"
 # include "get_next_line.h"
-// # include <X11/keysym.h>
-// # include <X11/X.h>
 
 typedef struct s_data {
 	void	*img;
@@ -45,7 +43,6 @@ typedef struct s_mlx {
 	void	*img;
 }	t_mlx;
 
-
 typedef struct s_point
 {
 	double	x;
@@ -58,7 +55,7 @@ typedef struct s_point
 }	t_point;
 
 typedef struct s_map {
-	int nx;
+	int	nx;
 	int	ny;
 	int	nz;
 }	t_map;
@@ -84,7 +81,7 @@ void	isometric(t_point *map, t_map md);
 t_point	rotate(t_point p, double degree, char axis);
 t_point	translate(t_point p, double dist, char axis);
 t_point	scaling(t_point	p, double sxy, double sz);
-void	set_coord(t_point* p, double x, double y, double z);
+void	set_coord(t_point *p, double x, double y, double z);
 void	set_color(t_point *p, int r, int g, int b);
 
 //put.c
