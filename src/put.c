@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/06 21:58:17 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:28:13 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,39 +54,46 @@ int	handle_no_event(void *data)
 	return (0);
 }
 
-int	handle_keyrelease(int keysym, t_mlx *data)
+int	handle_keypress(int keysym, t_mlx *data)
 {
 	if (keysym == XK_Escape)
-		mlx_destroy_window(data->mlx, data->mlx_win);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	return (0);
 }
+
+// int	handle_keyrelease(int keysym, t_mlx *data)
+// {
+// 	if (keysym == XK_Escape)
+// 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+// 	return (0);
+// }
 
 int	put_img(t_point *map, t_map md)
 {
 	t_mlx	data;
-	(void)	map;
-	(void)	md;
+	t_data	img;
 
-	data.mlx = mlx_init();
-	if (data.mlx == NULL)
+	data.mlx_ptr = mlx_init();
+	if (data.mlx_ptr == NULL)
 		return (MLX_ERROR);
-	data.mlx_win = mlx_new_window(data.mlx, WIDTH, HEIGHT, "FdF");
-	if (data.mlx_win == NULL)
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "FdF");
+	if (data.win_ptr == NULL)
 	{
-		free(data.mlx);
+		free(data.mlx_ptr);
 		return (MLX_ERROR);
 	}
-	mlx_loop_hook(data.mlx, &handle_no_event, &data);
-	mlx_hook(data.mlx_win, KeyRelease, KeyReleaseMask, &handle_keyrelease, &data);
-	// img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
-	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-	// 		&img.endian);
-	// // grid_put(&img, map, md);
-	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(data.mlx);
-	mlx_destroy_window(data.mlx, data.mlx_win);
-	mlx_destroy_display(data.mlx);
-	free(data.mlx);
+	mlx_loop_hook(data.mlx_ptr, &handle_no_event, &data);
+	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &data);
+	img.img = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+			&img.endian);
+	grid_put(&img, map, md);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, img.img, 0, 0);
+	mlx_loop(data.mlx_ptr);
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
+	free(img.img);
+	free(img.addr);
 	return (0);
 }
 

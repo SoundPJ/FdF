@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/06 21:57:41 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 17:11:00 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
-# include "mlx.h"
 # include "libft.h"
 # include "get_next_line.h"
 # include <X11/keysym.h>
@@ -40,8 +39,8 @@ typedef struct s_data {
 }	t_data;
 
 typedef struct s_mlx {
-	void	*mlx;
-	void	*mlx_win;
+	void	*mlx_ptr;
+	void	*win_ptr;
 }	t_mlx;
 
 
@@ -88,6 +87,6 @@ void	my_mlx_line_put(t_data *data, t_point p1, t_point p2);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	grid_put(t_data *data, t_point *map, t_map md);
 int		put_img(t_point *map, t_map md);
-
-
+int		handle_no_event(void *data);
+int		handle_keypress(int keysym, t_mlx *data);
 #endif
