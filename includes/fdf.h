@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/07 21:58:48 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 22:12:46 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WRL_ERR 2
 # define WIDTH 1920
 # define HEIGHT 1080
-# define XK_Escape 0xff1b
+# define XK_ESC 0xff1b
 
 # define MLX_ERROR 1
 

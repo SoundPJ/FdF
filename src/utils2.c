@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:21:28 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/07 22:11:11 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/07 22:12:58 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	exit_fdf(t_mlx *data)
 
 int	handle_keypress(int keysym, t_mlx *data)
 {
-	if (keysym == XK_Escape)
+	if (keysym == XK_ESC)
 		exit_fdf(data);
 	return (0);
 }
