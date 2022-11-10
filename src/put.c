@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 15:13:36 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:00:55 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,9 @@
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
+
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-	{
 		dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
-		// printf("HERE\n");
-		// printf("x = %d\t y = %d\n", x, y);
-	}
 	else
 		return ;
 	*(unsigned int *)dst = color;
@@ -57,7 +54,8 @@ int	render(t_mlx *data)
 		return (1);
 	render_background(&data->img, BLACK_PIXEL);
 	grid_put(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
+		data->img.mlx_img, 0, 0);
 	return (0);
 }
 
@@ -76,8 +74,8 @@ int	put_img(t_mlx *data)
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 			&data->img.line_len, &data->img.endian);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
-	mlx_hook(data->win_ptr, ON_KEYDOWN, 1L<<0, handle_keypress, data);
-	mlx_hook(data->win_ptr, ON_DESTROY, 1L<<0, exit_fdf, data);
+	mlx_hook(data->win_ptr, ON_KEYDOWN, 1L << 0, handle_keypress, data);
+	mlx_hook(data->win_ptr, ON_DESTROY, 1L << 0, exit_fdf, data);
 	mlx_loop(data->mlx_ptr);
 	exit_fdf(data);
 	return (0);

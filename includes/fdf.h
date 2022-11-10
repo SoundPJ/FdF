@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 15:21:39 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:18:34 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@
 // # define HEIGHT 1080
 # define WIDTH 800
 # define HEIGHT 500
-#define RED_PIXEL 0xFF0000
-#define GREEN_PIXEL 0xFF00
-#define WHITE_PIXEL 0xFFFFFF
-#define BLACK_PIXEL 0x000000
+# define BLACK_PIXEL 0x000000
 
 # include "mlx.h"
 # include <unistd.h>
@@ -36,6 +33,14 @@
 enum e_key{
 	ON_KEYDOWN = 02,
 	ON_DESTROY = 17,
+	K_X = 0x78,
+	K_Y = 0x79,
+	K_Z = 0x7a,
+	K_ESC = 0xff1b,
+	K_UP = 0xff52,
+	K_LEFT = 0xff51,
+	K_DOWN = 0xff54,
+	K_RIGHT = 0xff53,
 	K_A = 0x61,
 	K_B = 0x62,
 	K_C = 0x63,
@@ -59,10 +64,6 @@ enum e_key{
 	K_U = 0x75,
 	K_V = 0x76,
 	K_W = 0x77,
-	K_X = 0x78,
-	K_Y = 0x79,
-	K_Z = 0x7a,
-	K_ESC = 0xff1b,
 };
 
 typedef struct s_img {
@@ -133,6 +134,7 @@ void	render_background(t_img *img, int color);
 int		render_rect(t_mlx *data);
 // void	render_background(t_img *img, int color);
 void	b_rotate(t_mlx *data, char axis);
-// int		render(t_mlx *data);
+void	b_translate(t_mlx *data, char axis, int dir);
+void	b_scaling(t_mlx *data, int dir);
 
 #endif

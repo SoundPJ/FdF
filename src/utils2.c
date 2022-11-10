@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:21:28 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 15:24:48 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:22:25 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@ int	handle_keypress(int keysym, t_mlx *data)
 		b_rotate(data, 'y');
 	else if (keysym == K_Z)
 		b_rotate(data, 'z');
+	else if (keysym == K_UP)
+		b_translate(data, 'y', -1);
+	else if (keysym == K_DOWN)
+		b_translate(data, 'y', 1);
+	else if (keysym == K_RIGHT)
+		b_translate(data, 'x', 1);
+	else if (keysym == K_LEFT)
+		b_translate(data, 'x', -1);
+	else if (keysym == K_I)
+		b_scaling(data, 1);
+	else if (keysym == K_O)
+		b_scaling(data, -1);
 	return (0);
 }
 
