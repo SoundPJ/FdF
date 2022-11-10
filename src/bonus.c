@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:49:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 19:54:08 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:57:48 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	render_background(t_img *img, int color)
 	int	y;
 
 	y = 0;
-	while (y < HEIGHT)
+	while (y < H)
 	{
 		x = 0;
 		while (x < W)
