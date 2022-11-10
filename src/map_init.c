@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 23:54:13 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/09 20:25:01 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:30:17 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ static void	set_pointc(t_point *p, int x, int y, char *data)
 	if (zc[1])
 	{
 		p->rgb = xtoi(zc[1]);
-		p->r = get_rgb(p->rgb, 'r');
-		p->g = get_rgb(p->rgb, 'g');
-		p->b = get_rgb(p->rgb, 'b');
+		p->r = (0xFF0000 & p->rgb) >> 16;
+		p->g = (0x00FF00 & p->rgb) >> 8;
+		p->b = (0x0000FF & p->rgb);
 	}
 	else
 		set_color(p, 255, 255, 255);

@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:21:28 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 16:28:03 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:38:50 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,13 @@ void	isometric(t_mlx *data)
 	double	sz;
 
 	i = 0;
+	sz = 1;
 	if (data->md.nx > data->md.ny)
 		sxy = (WIDTH / data->md.nx) * 0.6;
 	else
 		sxy = (WIDTH / data->md.ny) * 0.6;
-	sz = HEIGHT / (2.3 * (double)data->md.nz);
+	if (data->md.nz != 0)
+		sz = HEIGHT / (2.3 * (double)data->md.nz);
 	while (i < (data->md.nx * data->md.ny))
 	{
 		data->map[i] = translate(data->map[i], -(data->md.nx / 2), 'x');

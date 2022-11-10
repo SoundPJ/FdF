@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 15:07:30 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:30:21 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,6 @@ int	xtoi(char *s)
 		}
 	}
 	return (num);
-}
-
-int	get_rgb(int rgb, char c)
-{
-	int	val;
-
-	val = 255;
-	if (c == 'r' || c == 'R')
-		val = (0xFF0000 & rgb) >> 16;
-	else if (c == 'g' || c == 'G')
-		val = (0x00FF00 & rgb) >> 8;
-	else if (c == 'b' || c == 'B')
-		val = (0x0000FF & rgb);
-	return (val);
 }
 
 //return 0 on success

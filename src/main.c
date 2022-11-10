@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:41:53 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 16:27:16 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:33:38 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 			return (0);
 		}
 		data.md = map_check(fd);
-		if (data.md.nx > 0)
+		if (data.md.nx > 0 && data.md.ny > 0)
 		{
 			data.map = malloc(sizeof(t_point) * data.md.nx * data.md.ny);
 			if (data.map == NULL)

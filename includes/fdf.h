@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 16:18:34 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:39:24 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ enum e_key{
 	K_LEFT = 0xff51,
 	K_DOWN = 0xff54,
 	K_RIGHT = 0xff53,
+	K_I = 0x69,
+	K_O = 0x6f,
 	K_A = 0x61,
 	K_B = 0x62,
 	K_C = 0x63,
@@ -49,13 +51,11 @@ enum e_key{
 	K_F = 0x66,
 	K_G = 0x67,
 	K_H = 0x68,
-	K_I = 0x69,
 	K_J = 0x6a,
 	K_K = 0x6b,
 	K_L = 0x6c,
 	K_M = 0x6d,
 	K_N = 0x6e,
-	K_O = 0x6f,
 	K_P = 0x70,
 	K_Q = 0x71,
 	K_R = 0x72,
@@ -91,12 +91,26 @@ typedef struct s_map {
 	int	nz;
 }	t_map;
 
+typedef struct s_tfm
+{
+	double	sxy;
+	double	sz;
+	double	x;
+	double	y;
+	double	z;
+	double	rx;
+	double	ry;
+	double	rz;
+}	t_tfm;
+
 typedef struct s_mlx {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
 	t_point	*map;
+	t_point	*mapp;
 	t_map	md;
+	t_tfm	tfm;
 }	t_mlx;
 
 //map_init.c
@@ -106,7 +120,6 @@ int		get_npoint(char *line);
 
 //utils.c
 int		xtoi(char *s);
-int		get_rgb(int rgb, char c);
 int		freestrarr(char **s);
 void	get_nz(t_mlx *data);
 
@@ -131,8 +144,6 @@ int		render(t_mlx *data);
 
 //bonus.c
 void	render_background(t_img *img, int color);
-int		render_rect(t_mlx *data);
-// void	render_background(t_img *img, int color);
 void	b_rotate(t_mlx *data, char axis);
 void	b_translate(t_mlx *data, char axis, int dir);
 void	b_scaling(t_mlx *data, int dir);
