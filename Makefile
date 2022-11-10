@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/11/10 12:57:17 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/11/10 20:05:40 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,4 +84,4 @@ norm:
 	norminette -R ForbiddenSourceHeader $(SRCS)
 	norminette -R CheckDefine $(INCS)
 
-.PHONY: all libs cclean restart nflag clean fclean re norm
+.PHONY: all libs cclean restart clean fclean re norm
