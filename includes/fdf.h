@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 17:39:24 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:54:50 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 # define RD	3.141592/180
 # define WRL_ERR 2
 # define MLX_ERROR 1
-// # define WIDTH 1920
-// # define HEIGHT 1080
-# define WIDTH 800
-# define HEIGHT 500
+// # define W 1920
+// # define H 1080
+# define W 800
+# define H 500
 # define BLACK_PIXEL 0x000000
 
 # include "mlx.h"
@@ -97,7 +97,6 @@ typedef struct s_tfm
 	double	sz;
 	double	x;
 	double	y;
-	double	z;
 	double	rx;
 	double	ry;
 	double	rz;
@@ -127,6 +126,8 @@ void	get_nz(t_mlx *data);
 int		exit_fdf(t_mlx *data);
 int		handle_keypress(int keysym, t_mlx *data);
 void	isometric(t_mlx *data);
+void	dup_map(t_mlx *data);
+void	transform(t_mlx *data);
 
 //calculate.c
 t_point	rotate(t_point p, double degree, char axis);

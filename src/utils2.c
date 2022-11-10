@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:21:28 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 17:38:50 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:54:38 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,56 @@ int	handle_keypress(int keysym, t_mlx *data)
 		b_scaling(data, 1);
 	else if (keysym == K_O)
 		b_scaling(data, -1);
+	else if (keysym == K_R)
+		isometric(data);
 	return (0);
 }
 
 void	isometric(t_mlx *data)
 {
-	int		i;
-	double	sxy;
-	double	sz;
-
-	i = 0;
-	sz = 1;
+	data->tfm.sz = 1;
 	if (data->md.nx > data->md.ny)
-		sxy = (WIDTH / data->md.nx) * 0.6;
+		data->tfm.sxy = (W / data->md.nx) * 0.6;
 	else
-		sxy = (WIDTH / data->md.ny) * 0.6;
+		data->tfm.sxy = (W / data->md.ny) * 0.6;
 	if (data->md.nz != 0)
-		sz = HEIGHT / (2.3 * (double)data->md.nz);
+		data->tfm.sz = H / (2.3 * (double)data->md.nz);
+	data->tfm.x = 0;
+	data->tfm.y = 0;
+	data->tfm.rx = 54.7;
+	data->tfm.ry = 0.0;
+	data->tfm.rz = -45.0;
+	dup_map(data);
+}
+
+void	dup_map(t_mlx *data)
+{
+	int		i;
+
+	data->mapp = malloc(sizeof(t_point) * data->md.nx * data->md.ny);
+	i = 0;
 	while (i < (data->md.nx * data->md.ny))
 	{
-		data->map[i] = translate(data->map[i], -(data->md.nx / 2), 'x');
-		data->map[i] = translate(data->map[i], -(data->md.ny / 2), 'y');
-		data->map[i] = scaling(data->map[i], sxy, sz);
-		data->map[i] = rotate(data->map[i], -45.0, 'z');
-		data->map[i] = rotate(data->map[i], 54.7, 'x');
-		data->map[i] = translate(data->map[i], WIDTH / 2, 'x');
-		data->map[i] = translate(data->map[i], HEIGHT / 2, 'y');
+		data->mapp[i] = data->map[i];
+		i++;
+	}
+}
+
+void	transform(t_mlx *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < (data->md.nx * data->md.ny))
+	{
+		data->mapp[i] = translate(data->map[i], -(data->md.nx / 2), 'x');
+		data->mapp[i] = translate(data->mapp[i], -(data->md.ny / 2), 'y');
+		data->mapp[i] = scaling(data->mapp[i], data->tfm.sxy, data->tfm.sz);
+		data->mapp[i] = rotate(data->mapp[i], data->tfm.rz, 'z');
+		data->mapp[i] = rotate(data->mapp[i], data->tfm.ry, 'y');
+		data->mapp[i] = rotate(data->mapp[i], data->tfm.rx, 'x');
+		data->mapp[i] = translate(data->mapp[i], (W / 2) + data->tfm.x, 'x');
+		data->mapp[i] = translate(data->mapp[i], (H / 2) + data->tfm.y, 'y');
 		i++;
 	}
 }

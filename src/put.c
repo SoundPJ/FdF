@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 17:35:21 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:54:29 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
+	if (x >= 0 && x < W && y >= 0 && y < H)
 		dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	else
 		return ;
@@ -53,6 +53,7 @@ int	render(t_mlx *data)
 	if (data->win_ptr == NULL)
 		return (1);
 	render_background(&data->img, BLACK_PIXEL);
+	transform(data);
 	grid_put(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img.mlx_img, 0, 0);
@@ -64,13 +65,13 @@ int	put_img(t_mlx *data)
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		return (MLX_ERROR);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "FdF");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, W, H, "FdF");
 	if (data->win_ptr == NULL)
 	{
 		mlx_destroy_display(data->mlx_ptr);
 		exit(1);
 	}
-	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	data->img.mlx_img = mlx_new_image(data->mlx_ptr, W, H);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 			&data->img.line_len, &data->img.endian);
 	mlx_loop_hook(data->mlx_ptr, &render, data);
@@ -88,14 +89,14 @@ void	grid_put(t_mlx *data)
 	i = 0;
 	while (i < ((data->md.nx * data->md.ny) - data->md.nx))
 	{
-		my_mlx_line_put(&data->img, data->map[i], data->map[i + data->md.nx]);
+		my_mlx_line_put(&data->img, data->mapp[i], data->mapp[i + data->md.nx]);
 		i++;
 	}
 	i = 0;
 	while (i < data->md.nx * data->md.ny)
 	{
 		if ((i + 1) % data->md.nx != 0)
-			my_mlx_line_put(&data->img, data->map[i], data->map[i + 1]);
+			my_mlx_line_put(&data->img, data->mapp[i], data->mapp[i + 1]);
 		i++;
 	}
 }
