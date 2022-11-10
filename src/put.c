@@ -6,24 +6,27 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:37:05 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/07 21:22:03 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:13:36 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
-
 	if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT)
-		dst = data->addr + (y * data->line_length + x * (data->bpp / 8));
+	{
+		dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		// printf("HERE\n");
+		// printf("x = %d\t y = %d\n", x, y);
+	}
 	else
 		return ;
 	*(unsigned int *)dst = color;
 }
 
-void	my_mlx_line_put(t_data *data, t_point p1, t_point p2)
+void	my_mlx_line_put(t_img *img, t_point p1, t_point p2)
 {
 	t_point		dp;
 	double		npx;
@@ -42,53 +45,59 @@ void	my_mlx_line_put(t_data *data, t_point p1, t_point p2)
 		color = ((p1.r + (int)(i * (dp.r / npx))) << 16)
 			+ ((p1.g + (int)(i * (dp.g / npx))) << 8)
 			+ p1.b + (int)(i * (dp.b / npx));
-		my_mlx_pixel_put(data, p1.x + (int)(i * (dp.x / npx)),
+		my_mlx_pixel_put(img, p1.x + (int)(i * (dp.x / npx)),
 			p1.y + (int)(i * (dp.y / npx)), color);
 		i++;
 	}
 }
 
-int	put_img(t_point *map, t_map md)
+int	render(t_mlx *data)
 {
-	t_mlx	data;
-	t_data	img;
-
-	data.mlx_ptr = mlx_init();
-	if (data.mlx_ptr == NULL)
-		return (MLX_ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIDTH, HEIGHT, "FdF");
-	if (data.win_ptr == NULL)
-	{
-		mlx_destroy_display(data.mlx_ptr);
-		exit(1);
-	}
-	mlx_key_hook(data.win_ptr, handle_keypress, &data);
-	mlx_hook(data.win_ptr, 17, 0, exit_fdf, &data);
-	data.img = mlx_new_image(data.mlx_ptr, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(data.img, &img.bpp, &img.line_length,
-			&img.endian);
-	grid_put(&img, map, md);
-	free(map);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
-	mlx_loop(data.mlx_ptr);
+	if (data->win_ptr == NULL)
+		return (1);
+	render_background(&data->img, BLACK_PIXEL);
+	grid_put(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
 
-void	grid_put(t_data *data, t_point *map, t_map md)
+int	put_img(t_mlx *data)
+{
+	data->mlx_ptr = mlx_init();
+	if (data->mlx_ptr == NULL)
+		return (MLX_ERROR);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "FdF");
+	if (data->win_ptr == NULL)
+	{
+		mlx_destroy_display(data->mlx_ptr);
+		exit(1);
+	}
+	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
+			&data->img.line_len, &data->img.endian);
+	mlx_loop_hook(data->mlx_ptr, &render, data);
+	mlx_hook(data->win_ptr, ON_KEYDOWN, 1L<<0, handle_keypress, data);
+	mlx_hook(data->win_ptr, ON_DESTROY, 1L<<0, exit_fdf, data);
+	mlx_loop(data->mlx_ptr);
+	exit_fdf(data);
+	return (0);
+}
+
+void	grid_put(t_mlx *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < ((md.nx * md.ny) - md.nx))
+	while (i < ((data->md.nx * data->md.ny) - data->md.nx))
 	{
-		my_mlx_line_put(data, map[i], map[i + md.nx]);
+		my_mlx_line_put(&data->img, data->map[i], data->map[i + data->md.nx]);
 		i++;
 	}
 	i = 0;
-	while (i < md.nx * md.ny)
+	while (i < data->md.nx * data->md.ny)
 	{
-		if ((i + 1) % md.nx != 0)
-			my_mlx_line_put(data, map[i], map[i + 1]);
+		if ((i + 1) % data->md.nx != 0)
+			my_mlx_line_put(&data->img, data->map[i], data->map[i + 1]);
 		i++;
 	}
 }

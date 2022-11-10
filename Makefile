@@ -6,7 +6,7 @@
 #    By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 15:13:11 by pjerddee          #+#    #+#              #
-#    Updated: 2022/11/07 21:33:04 by pjerddee         ###   ########.fr        #
+#    Updated: 2022/11/10 12:57:17 by pjerddee         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ MLX_FLAGS = -I$(MLX_DIR) -L$(MLX_DIR) -lmlx_Linux -lXext -lX11 -lm -lz
 SRCS =	src/main.c	\
 		src/put.c	\
 		src/utils.c	\
+		src/bonus.c	\
 		src/utils2.c	\
 		src/map_init.c	\
 		src/calculate.c	\
@@ -42,6 +43,7 @@ LIBFT_DIR = libft/
 INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I/usr/include
 # INCLUDES = -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR)
 
+# LIBS = -L$(LIBFT_DIR) -L/usr/lib
 LIBS = -L$(LIBFT_DIR) -lft -L/usr/lib
 # LIBS = -L$(LIBFT_DIR) -lft
 

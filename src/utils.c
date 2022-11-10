@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 23:38:35 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/07 21:58:45 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 15:07:30 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ int	xtoi(char *s)
 	}
 	return (num);
 }
-
-// int	rgb(int r, int g, int b)
-// {
-// 	return ((r << 16) + (g << 8) + b);
-// }
 
 int	get_rgb(int rgb, char c)
 {
@@ -67,7 +62,7 @@ int	freestrarr(char **s)
 	return (0);
 }
 
-void	get_nz(t_point *map, t_map *md)
+void	get_nz(t_mlx *data)
 {
 	int		i;
 	double	min;
@@ -76,13 +71,13 @@ void	get_nz(t_point *map, t_map *md)
 	i = 0;
 	min = 0.0;
 	max = 0.0;
-	while (i < md->nx * md->ny)
+	while (i < data->md.nx * data->md.ny)
 	{
-		if ((map + i)->z > max)
-			max = (map + i)->z;
-		if ((map + i)->z < min)
-			min = (map + i)->z;
+		if ((data->map + i)->z > max)
+			max = (data->map + i)->z;
+		if ((data->map + i)->z < min)
+			min = (data->map + i)->z;
 		i++;
 	}
-	md->nz = (int)(max - min);
+	data->md.nz = (int)(max - min);
 }
