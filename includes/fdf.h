@@ -6,13 +6,13 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 00:02:38 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 19:54:50 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 20:11:01 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define RD	3.141592/180
+# define RD	0.017453
 # define WRL_ERR 2
 # define MLX_ERROR 1
 // # define W 1920
