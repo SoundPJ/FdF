@@ -6,7 +6,7 @@
 /*   By: pjerddee <pjerddee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 21:21:28 by pjerddee          #+#    #+#             */
-/*   Updated: 2022/11/10 16:22:25 by pjerddee         ###   ########.fr       */
+/*   Updated: 2022/11/10 16:28:03 by pjerddee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	exit_fdf(t_mlx *data)
 	mlx_loop_end(data->mlx_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
+	free(data->map);
 	exit(0);
 }
 
